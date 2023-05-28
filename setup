@@ -1,0 +1,30 @@
+# 如果是杏霖云等其他服务器，就需要先执行这行代码新建一个文件夹，autodl的不用
+mkdir autodl-tmp
+
+# 进入auto-tmp目录
+cd autodl-tmp
+
+# 创建sd虚拟环境
+conda create -n sd python=3.10.6
+
+# 激活虚拟环境（以后每一次运行stable diffusion都要先用这个命令激活虚拟环境）
+conda activate sd
+
+# 更换pip源
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 下载stable diffuion
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+
+# 下载一些依赖
+git clone https://github.com/TencentARC/GFPGAN.git
+git clone https://github.com/openai/CLIP.git
+pip install open_clip_torch
+pip install ./GFPGAN
+pip install ./CLIP
+
+# 进入stable diffusion目录
+cd stable-diffusion-webui
+
+# 运行stable diffusion（第一次运行会下载一些依赖，下载好后以后运行sd就很快了）
+python launch.py
